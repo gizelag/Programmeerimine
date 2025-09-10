@@ -1,0 +1,5 @@
+vanus = int (input("Sisesta oma vanus:21"))
+            if vanus < 0: print ("Vigane vanus")
+            elif vanus < 18: print ("Oled veel liiga noor")
+            elif vanus 18 <= 65: print ("Oled tööeas")
+            else print ("Oled pensionieas")
