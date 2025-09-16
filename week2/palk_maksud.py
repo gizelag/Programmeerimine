@@ -5,6 +5,7 @@ sotsiaalmaks = brutopalk * 0.33
 toostuskindlustusmaks = brutopalk * 0.016
 netopalk = brutopalk - tulumaks - toostuskindlustusmaks
 
+
 if komakohad == 1:
     print(f"Palgaarvestuse kokkuvõte: \n Brutopalk: {brutopalk:.1f}€\n Tulumaks (22%): {tulumaks:.1f}€ \n Sotsiaalmaks (33%): {sotsiaalmaks:.1f}€ (tööandja maksab) \n Tööstuskindlustus (1.6%): {toostuskindlustusmaks:.1f}€ \n Netopalk (kätte saadav summa): {netopalk:.1f}€ ")
 if komakohad == 2:
