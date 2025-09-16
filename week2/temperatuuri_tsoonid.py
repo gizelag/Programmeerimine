@@ -9,3 +9,7 @@ elif temp <= 30:
     print("Soe suvi")
 else:
     print("Liiga kuum")
+
+
+
+
