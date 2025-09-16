@@ -1,4 +1,5 @@
 x = int(input("sisesta esimene taisarv:"))#kusib esimest taisarvu
+
 y = int(input("sisesta teine taisarv"))#kusib teist taisarvu
 summa = x + y#kahe arvu summa arvutamine
 if summa > 100:
