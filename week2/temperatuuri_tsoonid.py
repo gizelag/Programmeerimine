@@ -1,10 +1,10 @@
 temp = int(input("Sisesta temperatuur kraadides: "))
 if temp < 0:
-    print("Jaatumine")
+    print("Jäätumine")
 elif temp <= 10:
-    print("Kulm")
+    print("Külm")
 elif  temp <= 20:
-    print("Monus kevadilm")
+    print("Mõnus kevadilm")
 elif temp <= 30:
     print("Soe suvi")
 else:
