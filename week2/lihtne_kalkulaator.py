@@ -1,6 +1,6 @@
 a = int(input("sisesta esimene arv:"))
 tehe = str(input("sisesta tehe (+, -, *, /):"))
-b  int(input("sisesta teine arv:"))
+b = int(input("sisesta teine arv:"))
 if tehe == "+":
     print("tulemus:", a + b)
 elif tehe == "-":
