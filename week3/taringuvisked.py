@@ -10,5 +10,9 @@ def taringuvise():
         if kasutaja_sisend == "veereta":
             taringu_tulemus = random.randint(1, 2)
             print(f"Täring: {taringu_tulemus}")
-
+if taringu_tulemus == 6:
+    print("Said kuue! Lõpp. ")
+    break
+    elif print kasutaja_sisend == lõpp:
+        break
 
