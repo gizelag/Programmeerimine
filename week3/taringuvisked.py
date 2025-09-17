@@ -13,6 +13,8 @@ def taringuvise():
 if taringu_tulemus == 6:
     print("Said kuue! Lõpp. ")
     break
-    elif print kasutaja_sisend == lõpp:
-        break
+elif print kasutaja_sisend == lõpp:
+      break
+    if__name__ == "__main__":
+    main()
 
