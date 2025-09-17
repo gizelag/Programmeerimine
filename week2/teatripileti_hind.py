@@ -1,8 +1,8 @@
 vanus = input("Siseta oma vanus: ")
 if vanus == false:
     print("Vanus peab olema täisarv!")
-    elif vanus <= 0:
-print("Vanus ei saa olla 0 või negatiivne!")
+elif vanus <= 0:
+    print("Vanus ei saa olla 0 või negatiivne!")
 
 hind = 0
 if vanus >= 1 and vanus <= 5:
