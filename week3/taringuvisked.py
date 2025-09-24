@@ -10,14 +10,16 @@ def taringuvise():
         if kasutaja_sisend == "veereta":
             taringu_tulemus = random.randint(1, 6)
             print(f"Täring: {taringu_tulemus}")
+
             if taringu_tulemus == 6:
                 print("Said kuue! Lõpp. ")
                 break
         elif kasutaja_sisend == "lõpp":
             print("Programm lõpetatud.")
             break
-        else:
-            print("Veereta")
-if __name__ == "__main__":
-    main()
+    def main():
+        taringuvise()
+
+    if __name__ == "__main__":
+        main()
 
