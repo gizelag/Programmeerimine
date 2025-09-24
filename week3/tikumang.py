@@ -54,10 +54,10 @@ def main():
         print(f"Alles: {tikud} tikku")
         if tikud == 0:
             mangija = 1
-            print("\nMängija 1 (sina) võttis viimase tikuja kaotas")
+            print("\nMängija 1 (sina) võttis viimase tiku ja kaotas")
             print("Arvuti võitis!")
         else:
-            print("\nArvuti võttis viimase tikuja kaotas")
+            print("\nArvuti võttis viimase tiku ja kaotas")
             print("Palju õnne, sa võitsid!")
         break
     print(f"Tikke järel: {tikud} \n")
@@ -67,3 +67,4 @@ def main():
         mangija = 1
 
 if __name__ == "__main__":
+    main()
