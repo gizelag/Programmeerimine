@@ -1,19 +1,20 @@
 def on_piisavalt_pikk(parool):
+    return len(parool) >= 8
     count = 0
     for sisaldab_tahti_ja_numbreid in parool:
         count += 1
-        return >= 8
+
 def sisaldab_tahti_ja_numbreid(parool):
-    has_letter = False
-    has_digit = False
+    sisaldab_tahti = False
+    sisaldab_numbreid = False
     for sisaldab_tahti_ja_numbreid in parool:
         char = 'a'
         if char.isalpha():
-            has_letter = True
+            sisaldab_tahti = True
             elif char.isdigit():
-            has_digit = True
+            sisaldab_numbreid = True
             print("See on number")
-            return has_letter, has_digit
+            return sisaldab_tahti and sisaldab_numbreid
 
 def ei_sisalda_tuhikuid(parool):
     for tuhik in parool:
