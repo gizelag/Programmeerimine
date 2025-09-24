@@ -14,9 +14,10 @@ def sisaldab_tahti_ja_numbreid(parool):
 
 def ei_sisalda_tuhikuid(parool):
     for char in parool:
-        if char == " "
-        return False
-        return True
+        if char == " ":
+            return False
+        else:
+            return True
 
  def main ():
     katsed = 5
@@ -35,4 +36,4 @@ def ei_sisalda_tuhikuid(parool):
                 print("Liiga palju katseid. Ligipääs keelatud.")
 
 if __name__ == "__main__":
-
+    main()
