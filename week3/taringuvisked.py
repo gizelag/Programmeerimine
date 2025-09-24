@@ -19,7 +19,6 @@ def taringuvise():
             break
     def main():
         taringuvise()
-
     if __name__ == "__main__":
         main()
 
