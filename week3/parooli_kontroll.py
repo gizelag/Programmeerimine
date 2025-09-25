@@ -19,9 +19,10 @@ def sisaldab_tahti_ja_numbreid(parool):
 
 def ei_sisalda_tuhikuid(parool):
     for mark in parool:
-        if mark == ' ':
+        if mark == " ":
             return False
     return True
+
 
 
 def main():
