@@ -27,7 +27,7 @@ def main():
     while katsed > 0:
         parool = input("Sisesta parool: ")
 
-        if (ei_sisalda_tuhikuid(parool) and sisaldab_tahti_ja_numbreid(parool) and on_piisavalt_pikk(parool)):
+        if ei_sisalda_tuhikuid(parool) and sisaldab_tahti_ja_numbreid(parool) and on_piisavalt_pikk(parool):
             print("Parool aktsepteeritud.")
             return
         else:
