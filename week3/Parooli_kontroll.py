@@ -9,10 +9,13 @@ def sisaldab_tahti_ja_numbreid(parool):
         if mark.isalpha():
             sisaldab_tahti = True
             print("See on täht")
-        if mark.isdigit():
+        elif mark.isdigit():
             sisaldab_numbreid = True
             print("See on number")
-    return sisaldab_tahti and sisaldab_numbreid
+    if sisaldab_numbreid == True and sisaldab_tahti == True:
+        return True
+    else:
+        return False
 
 def ei_sisalda_tuhikuid(parool):
     for mark in parool:
