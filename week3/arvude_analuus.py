@@ -5,7 +5,10 @@ def leia_suurim(uus, senine_max):#vordleb kahte arvu ja tagastab suurema
         return senine_max
 
 def kas_suurem_kui_50(arv):
-    return arv > 50
+    if arv > 50:
+        return True
+    else:
+        return False
 
 def main ():
     print("Sisesta arvud ükshaaval (1-100) lõpetamiseks kirjuta 'lõpp'")
@@ -32,12 +35,12 @@ def main ():
         if kas_suurem_kui_50(arv):
             yle_viiekymne += 1
 
-            print("\n ---TULEMUSED---")
+        print("\n ---TULEMUSED---")
         if arv_kokku == 0:
             print("Ühtegi arvu ei sisestatud.")
         else:
             keskmine = summa / arv_kokku
-            print(f"Ssestati {arv_kokku} arvu.")
+            print(f"Sisestati {arv_kokku} arvu.")
             print(f"Arvude summa: {summa}")
             print(f"Suure suurim: {suurim}")
             print(f"Keskmine: {keskmine}")
