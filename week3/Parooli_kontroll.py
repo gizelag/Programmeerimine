@@ -8,6 +8,7 @@ def sisaldab_tahti_ja_numbreid(parool):
     for mark in parool:
         if mark.isalpha():
             sisaldab_tahti = True
+            print("See on täht")
         if mark.isdigit():
             sisaldab_numbreid = True
             print("See on number")
