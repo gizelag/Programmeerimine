@@ -26,7 +26,7 @@ def kontrolli_pulss(bpm):
         return "kõrvalekalle"
 
 def main():
-    temperature = float(input("Sisesta kehatemperatuur (): "))
+    temperature = float(input("Sisesta kehatemperatuur (°C): "))
     temp_staatus = kontrolli_temperatuur(temperature)
     print(f"Temperatuur: {temp_staatus}")
     blood_pressure = int(input("Sisesta vererõhk (mmHg): "))
