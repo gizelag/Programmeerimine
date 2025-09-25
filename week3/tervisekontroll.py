@@ -17,10 +17,10 @@ def kontrolli_vererohk(blood_pressure):
         return "kõrvalekalle"
 
 
-def kontrolli_pulss(BPM):
-    if 60 <= BPM <= 100:
+def kontrolli_pulss(bpm):
+    if 60 <= bpm <= 100:
         return "norm"
-    elif (50 <= BPM <= 100) or (101 <= BPM <= 110):
+    elif (50 <= bpm <= 100) or (101 <= bpm <= 110):
         return "piiripealne"
     else:
         return "kõrvalekalle"
@@ -33,24 +33,24 @@ def main():
     bloodpressure_staatus = kontrolli_vererohk(blood_pressure)
     print(f"Vererõhk: {bloodpressure_staatus}")
 
-    BPM = int(input("Sisesta pulss (BPM): "))
-    BPM_staatus = kontrolli_pulss(BPM)
-    print(f"Pulss: {BPM_staatus}")
+    bpm = int(input("Sisesta pulss (bpm): "))
+    bpm_staatus = kontrolli_pulss(bpm)
+    print(f"Pulss: {bpm_staatus}")
     halb_tunne = input("Kas patsient tunneb end halvasti? (jah/ei): ").strip().lower()
-    staatused = [temp_staatus, bloodpressure_staatus, BPM_staatus]
-    kõrvalekaldeid = staatused.count("kõrvalekalle")
+    staatused = [temp_staatus, bloodpressure_staatus, bpm_staatus]
+    korvalekaldeid = staatused.count("kõrvalekalle")
     piiripealseid = staatused.count("piiripealne")
 
-    print(f"KOKKUVÕTE: {kõrvalekaldeid} kõrvalekalle, {piiripealseid} piiripealne")
+    print(f"KOKKUVÕTE: {korvalekaldeid} kõrvalekalle, {piiripealseid} piiripealne")
 
 
-    if kõrvalekaldeid >= 2:
+    if korvalekaldeid >= 2:
         soovitus = "Pöördu arsti poole."
-    elif halb_tunne == "jah" and (kõrvalekaldeid >= 1 or piiripealseid >= 1):
+    elif halb_tunne == "jah" and (korvalekaldeid >= 1 or piiripealseid >= 1):
         soovitus = "Pöördu arsti poole."
-    elif kõrvalekaldeid == 0 and piiripealseid > 0:
+    elif korvalekaldeid == 0 and piiripealseid > 0:
         soovitus = "Jälgi oma tervist."
-    elif kõrvalekaldeid == 0 and piiripealseid  == 0:
+    elif korvalekaldeid == 0 and piiripealseid  == 0:
         soovitus = "Tervislik seisund on hea."
     else:
         soovitus = "Pöördu arsti poole."#kui patsient tunneb end hasti aga on korvalekaldeid
