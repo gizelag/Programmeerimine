@@ -1,14 +1,14 @@
 import time
 import random
 
-def kusi_kasutaja_kaik(tikud_alles):
+def küsi_kasutaja_käik(tikud_alles):
     print("Mängija 1 kord(sul on 5 sekundit)")
     start = time.time()
-    kasutaja_input = input("Mitu tikku võtad(1-5)?")
+    kasutaja_input = int(input("Mitu tikku võtad(1-5)? "))
     end = time.time()
 
-    kestus = end - start
-    if kestus > 5:
+    aeg = end - start
+    if aeg > 5:
         print("Aeg läbi! Võetakse auttomaatselt 1 tikk.")
         return 1
     if not kasutaja_input.isdigit():
@@ -26,34 +26,34 @@ def kusi_kasutaja_kaik(tikud_alles):
 
     return mitu
 
-def arvuti_kaik(tikud_alles):
+def arvuti_käik(tikud_alles):
     max_voetav = min(5, tikud_alles)#suurim lubatud vaartus
-    kaik = random.randint(1, max_voetav)
+    käik = random.randint(1, max_voetav)
     print("Mängija 2 (arvuti) kord:")
-    print(f"Arvuti: {kaik}")
-    return kaik
+    print(f"Arvuti: {käik}")
+    return käik
 
 def main():
-    tikud = 20
-    mangija = 1#1 on inimene ja 2 on arvuti
-
     print("Tikumäng algab! Viimase tiku võtja kaotab.")
-    print(f"Tikke järel: {tikud} \n")
+    tikud = 20
+    mängija = 1#1 on inimene ja 2 on arvuti
+
 
     while tikud > 0:
-        if mangija == 1:
-            kaik = kusi_kasutaja_kaik(tikud)
-            print(f"Kasutaja käik: {kaik}")
+        print(f"Tikke järel: {tikud} \n")
+        if mängija == 1:
+            käik = küsi_kasutaja_käik(tikud)
+            print(f"Kasutaja käik: {käik}")
         else:
-            kaik = arvuti_kaik(tikud)
+            käik = arvuti_käik(tikud)
 
-        tikud -= kaik
+        tikud -= käik
         if tikud < 0:
             tikud = 0
 
         print(f"Alles: {tikud} tikku")
         if tikud == 0:
-            mangija = 1
+            mängija = 1
             print("\nMängija 1 (sina) võttis viimase tiku ja kaotas")
             print("Arvuti võitis!")
         else:
@@ -61,10 +61,10 @@ def main():
             print("Palju õnne, sa võitsid!")
         break
     print(f"Tikke järel: {tikud} \n")
-    if mangija == 1:
-        mangija = 2
+    if mängija == 1:
+        mängija = 2
     else:
-        mangija = 1
+        mängija = 1
 
 if __name__ == "__main__":
     main()
