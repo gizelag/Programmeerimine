@@ -4,6 +4,7 @@ def on_piisavalt_pikk(parool):
 def sisaldab_tahti_ja_numbreid(parool):
     sisaldab_tahti = False
     sisaldab_numbreid = False
+
     for char in parool:
         if char.isalpha():
             sisaldab_tahti = True
@@ -19,7 +20,8 @@ def ei_sisalda_tuhikuid(parool):
         else:
             return True
 
- def main ():
+
+def main():
     katsed = 5
 
     while katsed > 0:
