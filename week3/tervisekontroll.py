@@ -8,7 +8,7 @@ def kontrolli_temperatuur(temperature):
     else:
         return "kõrvalekalle"
 
-def kontrolli_vererohk(blood_pressure):
+def kontrolli_vererõhk(blood_pressure):
     if 100 <= blood_pressure <= 129:
         return "norm"
     elif (90 <= blood_pressure <= 99) or (130 <= blood_pressure <= 139):
@@ -30,7 +30,7 @@ def main():
     temp_staatus = kontrolli_temperatuur(temperature)
     print(f"Temperatuur: {temp_staatus}")
     blood_pressure = int(input("Sisesta vererõhk (mmHg): "))
-    bloodpressure_staatus = kontrolli_vererohk(blood_pressure)
+    bloodpressure_staatus = kontrolli_vererõhk(blood_pressure)
     print(f"Vererõhk: {bloodpressure_staatus}")
 
     bpm = int(input("Sisesta pulss (bpm): "))
