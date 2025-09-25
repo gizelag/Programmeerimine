@@ -7,7 +7,7 @@ def leia_suurim(uus, senine_max):#vordleb kahte arvu ja tagastab suurema
 def kas_suurem_kui_50(arv):
     return arv > 50
 
-def main():
+def main ():
     print("Sisesta arvud ükshaaval (1-100) lõpetamiseks kirjuta 'lõpp'")
     summa = 0
     suurim = 0
