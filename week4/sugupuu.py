@@ -29,14 +29,14 @@ def kuva_viis_esimest(failisisu):
             if not nimi:#kontrollime et nimi ei ole tuhi peale tuhikute eemaldamist
                 continue
 
-            vanus = int(round(rea_osad[1].strip())#teisendame vanuse taisarvuks
+            vanus = int(round(rea_osad[1].strip()))#teisendame vanuse taisarvuks
 
 
 
         except (ValueError, IndexError):
             continue
 
-    for i in fail.readlines()[:5]:
+    for i in failisisu.readlines()[:5]:
         nimi, vanus = rida.strip().split(";")
         print(f"{nimi} on {vanus} aastat vana")
 
@@ -81,8 +81,18 @@ def main():
     failisisu = loe_pereandmeid(failinimi)
     kuva_viis_esimest(failisisu)
     arvuta_perestatistika(failisisu)
-    if keskmine is not None:
-        print
+    if keskmine_vanus is not None:
+        print(f"Keskmine vanus:{keskmine_vanus}")
+    if noorim_vanus is not None:
+        print(f"Noorim vanus:{noorim_vanus}")
+    if vanim_vanus is not None:
+        print(f"Vanim vanus:{vanim_vanus}")
+    else:
+        print("Ei suutnud leida ühtegi kehtivat vanust failist")
+
+if __name__ == "__main__":
+    main()
+
 
 
 
