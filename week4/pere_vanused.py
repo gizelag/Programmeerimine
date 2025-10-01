@@ -10,7 +10,7 @@ def loe_pereandmed():
     except FileNotFoundError:
         return None
 
-def arvuta_perestatistika():
+def arvuta_perestatistika(failisisu):
     if failisisu is None:
         return None, None, None
     inimeste_arv = 0
@@ -97,9 +97,9 @@ def kuva_vordlus(vana_keskmine, vana_noorim, vana_vanim, uus_keskmine, uus_noori
     muutus_noorim = uus_noorim - vana_noorim
     muutus_vanim = uus_vanim - vana_vanim
 
-    print(f"Keskmine vanus: {vana} -> {uus} (muutus: {erinevus})")
-    print(f"Noorim vanus: {vana_noorim} -> {uus_noorim} (muutus: {erinevus})")
-    print(f"Vanim vanus: {vana_vanim} -> {uus_vanim} (muutus: {erinevus-vana_vanim})")
+    print(f"Keskmine vanus: {vana_keskmine} -> {uus_keskmine} (muutus: {muutus_keskmine})")
+    print(f"Noorim vanus: {vana_noorim} -> {uus_noorim} (muutus: {muutus_noorim})")
+    print(f"Vanim vanus: {vana_vanim} -> {uus_vanim} (muutus: {muutus_vanim})")
 
 def main():
     sisu = loe_pereandmed()
