@@ -9,17 +9,15 @@ def loe_tulemused(failinimi):
 
 def leia_voitja(failisisu):
     # Kontrollin, ega funktsiooni sisend pole None
-    if failisisu is None:
+    if failisisu == None:
         return None, 0
-
-
     voitja_nimi = ""
     voitja_punktid = 0
 
     try:
         for rida in failisisu:
-            # rida.strip()
-            # print(rida)
+            rida.strip()
+
 
             # Kui tuhi rida siis jatame rea vahele
             if not rida:
@@ -53,14 +51,14 @@ def leia_voitja(failisisu):
                     voitja_punktid = punktid
                     voitja_nimi = nimi
 
-            # Jäta vigased read vahele ja jätka järgmise rea
+            # Jäta vigased read vahele ja jätka järgmise real
             except (ValueError, IndexError):
                 continue
 
         return voitja_nimi, voitja_punktid
 
     except Exception:
-        print("Error tekkis funktsioonis `leia_voitja(failisisu)`")
+        print("Error tekkis funktsioonis leia_voitja(failisisu)")
         return None, 0
 
 
