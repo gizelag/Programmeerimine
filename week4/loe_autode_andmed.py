@@ -6,6 +6,7 @@ def loe_autode_andmed(failinimi):
         print(f"Viga: Faili '{failinimi}' ei leitud, error: {e}")
         return None
 
+
 def kontrolli_auto_andmeid(auto_rida):
     if auto_rida is None:
         return False
