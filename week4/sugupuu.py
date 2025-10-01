@@ -36,7 +36,6 @@ def kuva_viis_esimest(failisisu):
 
 
 def arvuta_perestatistika(failisisu):
-
     if failisisu is None:
         return None
     inimeste_arv = 0
