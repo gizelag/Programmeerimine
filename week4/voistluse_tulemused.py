@@ -70,5 +70,6 @@ def main():
     print(f"VÕITJA: {nimi_voitjal} ({punktid_voitjal} punkti)")
 
 
+
 if __name__ == "__main__":
     main()
