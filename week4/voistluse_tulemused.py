@@ -8,7 +8,7 @@ def loe_tulemused(failinimi):
 
 
 def leia_voitja(failisisu):
-    # Kontrolli, ega funktsiooni sisend pole None
+    # Kontrollin, ega funktsiooni sisend pole None
     if failisisu is None:
         return None, 0
 
@@ -21,11 +21,11 @@ def leia_voitja(failisisu):
             # rida.strip()
             # print(rida)
 
-            # Kui tuhi rida siis jatame vahele
+            # Kui tuhi rida siis jatame rea vahele
             if not rida:
                 continue
 
-            # Kas eraldaja mark on, kui ei ole jatame vahele
+            # Kas eraldaja mark on, kui ei ole siis jatame vahele
             if ";" not in rida:
                 continue
 
@@ -33,7 +33,7 @@ def leia_voitja(failisisu):
                 rea_osad = rida.split(";")
                 # print(rea_osad)
 
-                # Kontrolli, et tükeldamise tulemusena on täpselt 2 osa -> voib tekkida ValueError
+                # Kontrollin, et tükeldamise tulemusena on täpselt 2 osa sest voib tekkida ValueError
                 if len(rea_osad) != 2:
                     continue
 
