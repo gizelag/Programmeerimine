@@ -1,12 +1,13 @@
-def loe_pereandmeid(failinimi):
+def loe_pereandmeid(vanused):
 
     try:
-        with open(failinimi,"r", encoding="utf-8") as f:
+        with open(vanused,"r", encoding="utf-8") as f:
             for rida in f:
                 print(rida)
     except FileNotFoundError:
-        print(f"Viga: '{failinimi}' ei leitud")
+        print(f"Viga: '{vanused}' ei leitud")
         return None
+
 
 def kuva_viis_esimest(failisisu):
     if failisisu is None:
@@ -36,7 +37,7 @@ def kuva_viis_esimest(failisisu):
         except (ValueError, IndexError):
             continue
 
-    for i in failisisu.readlines()[:5]:
+    for i in vanused.readlines()[:5]:
         nimi, vanus = rida.strip().split(";")
         print(f"{nimi} on {vanus} aastat vana")
 
@@ -59,6 +60,7 @@ def arvuta_perestatistika(failisisu):
 
         try:
             rea_osad = rida.split(";")  # tukeldan rea osad sobiva eraldajaga
+
             if len(rea_osad) != 2:  # kontollin et tukeldamise tulemusena on tapselt kaks rida
                 continue
 
