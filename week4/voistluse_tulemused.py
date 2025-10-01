@@ -12,6 +12,7 @@ def leia_voitja(failisisu):
     if failisisu is None:
         return None, 0
 
+
     voitja_nimi = ""
     voitja_punktid = 0
 
