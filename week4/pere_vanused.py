@@ -120,5 +120,6 @@ def main():
     if None not in (vana_keskmine, vana_noorim, vana_vanim, uus_keskmine, uus_noorim, uus_vanim):
         kuva_vordlus(vana_keskmine, vana_noorim, vana_vanim, uus_keskmine, uus_noorim, uus_vanim)
 
+
 if __name__ == "__main__":
     main()
