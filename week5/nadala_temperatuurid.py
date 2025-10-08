@@ -1,10 +1,10 @@
 def leia_paeva_keskmine(paevad, paevade_temp):
     if not paevad or paevade_temp:
         print(" Viga, tühi fail")
-        return []
+        return {}
     if len(paevad) != len(paevade_temp):
         print("Viga, pole sama pikkusega")
-        return []
+        return {}
 
     try:
         paevade_kesk_dict = {
