@@ -1,5 +1,5 @@
 def leia_paeva_keskmine(paevad, paevade_temp):
-    if paevad and paevade_temp = " " :
+    if not paevad or paevade_temp:
         print(" Viga, tühi fail")
         return []
     if len(paevad) != len(paevade_temp):
