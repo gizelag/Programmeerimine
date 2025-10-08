@@ -37,6 +37,7 @@ def kuva_koik_nimed(nimed):
     for i, nimi in enumerate(nimed, start = 1):
         print(f'{i}. {nimi}')
 
+
 def lisa_nimi(nimed):
     uus_nimi = input("Sisesta uus nimi:")
     if not uus_nimi.strip():
@@ -126,8 +127,9 @@ def main():
         else:
             break
 
-    print('Lõplik nimekiri oli:')
+    print(f'Lõplik nimekiri oli:')
     kuva_koik_nimed(nimed)
+
 
 
 if __name__ == "__main__":
