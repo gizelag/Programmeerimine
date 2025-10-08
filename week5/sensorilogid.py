@@ -75,6 +75,7 @@ def main():
         f"Keskmine temperatuur: {sõnastik.get('keskmine', 'Pole arvutatud')} °C\n"
         f"Alla keskmise mõõtmised kokku: {alla_keskmise}")
 
+
 if __name__ == "__main__":
     main()
 
