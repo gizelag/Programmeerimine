@@ -131,7 +131,6 @@ def main():
     kuva_koik_nimed(nimed)
 
 
-
 if __name__ == "__main__":
     main()
 
