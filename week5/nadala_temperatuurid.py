@@ -5,7 +5,7 @@ def leia_paeva_keskmine(paevad, paevade_temp):
     if len(paevad) != len(paevade_temp):
         print("Viga, pole sama pikkusega")
         return {}
-
+    paevade_avg_dict = {}
     try:
         paevade_avg_dict = {
             paev: round(sum(tempid) / len(tempid), 1)
