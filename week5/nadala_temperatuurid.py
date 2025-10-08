@@ -16,6 +16,7 @@ def leia_paeva_keskmine(paevad, paevade_temp):
         print(f"Viga:{e}")
         return {}
 
+
 def leia_ekstreemsed(paevade_kesk_dict):
     if not paevade_kesk_dict:
         print("Viga, leia_ekstreemsed")
