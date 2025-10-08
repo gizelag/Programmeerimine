@@ -1,5 +1,4 @@
 from andmete_lugeja import loe_tekst_failist
-
 def lae_vanused_failist(failinimi):
     sisu = loe_tekst_failist(failinimi)
     sõnastik = {}
