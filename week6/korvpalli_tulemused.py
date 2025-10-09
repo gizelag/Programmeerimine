@@ -33,6 +33,8 @@ def analuusi_eelmist_vooru(eelmise_vooru_failinimi):
 def koosta_koondetabel(eelmise_vooru_punktid, kaesoleva_vooru_punktid):
     koond = {}
     for nimi, pts in (eelmise_vooru_punktid or items{}):
+        koond[nimi] = koond.get(nimi, 0)
+
 
 
 
