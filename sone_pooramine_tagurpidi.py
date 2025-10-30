@@ -1,4 +1,4 @@
-def poora_sone(sone: str):
+def poora_sone(sone: str) -> str:
     if not isinstance(sone, str):#kontrollime kas sone on string
         print("Viga:sisend pole string")
         return None
