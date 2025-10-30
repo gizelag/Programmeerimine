@@ -1,16 +1,16 @@
 def poora_sone(sone: str) -> str:
     if not isinstance(sone, str):#kontrollime kas sone on string
         print("Viga:sisend pole string")
-        return None
-    if len(sone) == 0:#baas on sone pikkus, seadsime piiri
-        return ""#tagastab tuhiku sest 0 ei saa str-is tagastada
+        return " "#tagastab tuhiku
+    pikkus = len(sone)#baas on sone pikkus
+    if pikkus > 0:
+        return sone[(pikkus-1)] + poora_sone(sone[:pikkus-1])#samm
     else:
-        return sone[-1] + poora_sone(sone[:-1])#
+        return ''
 
 def main():
-    andmed = "tere"
-    print(poora_sone(andmed))
+    sone = poora_sone("tere")
+    print (sone)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
-
