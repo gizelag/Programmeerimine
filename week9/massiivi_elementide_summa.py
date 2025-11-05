@@ -7,7 +7,7 @@ def massiivi_summa(massiiv: list[int]) -> int:
     else:#rekursiooni samm
         return massiiv[0] + massiivi_summa(massiiv[1:])
 
-def main():
+def main():#kutsume maini valja
     andmed = [1, 2, 3, 4]
     print(massiivi_summa(andmed))
 
