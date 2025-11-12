@@ -73,18 +73,18 @@ def koosta_koondedetabel(eelmise_turniiri_punktid, kaesoleva_turniiri_punktid):
 
 #liidame kokku
     koondtabel = {}
+    for meeskond in set(eelmise_turniiri_punktid.keys()) | set(kaesoleva_turniiri_punktid.keys()):
+        eelmine = eelmise_turniiri_punktid.get(meeskond, 0)
+        kaesolev = kaesoleva_turniiri_punktid.get(meeskond, 0)
+        koondtabel[meeskond] = eelmine + kaesolev
 
-    for meeskond in kaesoleva_vooru_punktid:
-        if meeskond in meeskonna_punktid:
-            meeskonna_punktid[meeskond] += kaesoleva_vooru_punktid[meeskond]
-        else:
-            meeskonna_punktid[meeskond] = kaesoleva_vooru_punktid[meeskond]
     #sorteerime kahanevalt kogupunktide jargi
-    sorteeritud_list = sorted(meeskonna_punktid.items(), key=lambda item: item[1], reverse=True)
+    sorteeritud = sorted(koondtabel.items(), key=lambda item: item[1], reverse=True)
+    return dict(sorteeritud)
 
-    koondedetabel = {}#teeme dicti
+    '''koondedetabel = {}#teeme dicti
     for meeskond, punktid in sorteeritud_list:
-        koondedetabel[meeskond] = punktid
+        koondedetabel[meeskond] = punktid'''
 
     return koondedetabel
 def salvesta_edetabel(koondpunktid, edetabeli_failinimi="koondedetabel.txt"):
