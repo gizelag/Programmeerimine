@@ -39,7 +39,7 @@ def  loe_raamatud_failist(failinimi):
         return []
 
 def kasitle_juba_laenutatud(raamatukogu, pealkiri):
-    if raamatukogu.on_juba_laenutatud(pealkiri) == True:
+    if raamatukogu.on_juba_laenutatud(pealkiri) == True:      #tagastab true kui kasutaja soovib laenutada ja false kui mitte
         print(f"\nSa oled raamatu {pealkiri} juba endale laenutanud\n")
     raamatukogu.kuva_laenutatud_raamatud()
     return kysi_kas_jatkata(raamatukogu)
