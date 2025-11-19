@@ -1,4 +1,4 @@
-from liikumisvahend import liikumisvahend
+from liikumisvahend import Liikumisvahend
 
 class Laenutus():
     def __init__(self, liikumisvahendid : list):
