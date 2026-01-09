@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 class Accommodation():
-    accommodation_type = str
-    def __init__(self, name (str),address (str), city (str),base_price (float), rating (float),capacity (int),has_wifi (bool),has_parking (bool),has_breakfast (bool),check_in_time (str),check_out_time (str),min_nights):
+    accommodation_type = ""
+    def __init__(self, name: str,address: str, city :str ,base_price :float, rating :float,capacity :int,has_wifi :bool,has_parking :bool,has_breakfast :bool,check_in_time :str,check_out_time :str,min_nights):
 
         self.name = name
         self.address = address
@@ -16,7 +16,7 @@ class Accommodation():
         self.check_out_time = check_out_time
         self.min_nights = min_nights
 
-@staticmethod
+    @staticmethod
     def is_valid_time():
         if not isinstance(is_valid_time, int):
             raise ValueError print (f'Majutuskoha {name} sisseregistreerimise/väljaregistreerimise aeg peab olema formaadis HH:MM! Saadud: {time}')
