@@ -18,7 +18,7 @@ def joonista_objekt(x, y, suurus, värv):
     turtle.end_fill()
 
     #joonista katus
-    turtle.fillcolor('black')
+    turtle.fillcolor("black")
     turtle.begin_fill()
     turtle.goto(x, y + suurus)
     turtle.goto(x+ suurus/2, y + suurus + suurus/2)

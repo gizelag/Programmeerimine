@@ -1,0 +1,15 @@
+001,Mari,Arendaja,3200
+002,Jüri,Disainer,2900
+003,Kati,Arendaja,3500
+004,Toomas,Juht,5000
+005,Liis,Disainer,2800
+006,Andres,Müügimees,2700
+007,Kristiina,Arendaja,3800
+008,Peeter,Juht,4500
+009,Maarika,Raamatupidaja,2500
+010,Risto,Disainer,3100
+011,Laura,Arendaja,3400
+012,Martin,IT tugi,2600
+013,Kadri,Müügimees,2900
+014,Tõnu,Turundaja,3300
+015,Ene,Raamatupidaja,2400

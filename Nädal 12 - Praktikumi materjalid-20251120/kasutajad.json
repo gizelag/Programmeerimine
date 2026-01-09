@@ -1,0 +1,37 @@
+[
+    {
+        "kasutajanimi": "lottebiceps",
+        "eesnimi": "Lotte",
+        "perenimi": "Muskel",
+        "synnikuupaev": "2000-01-15",
+        "parool": "LotteStrong1"
+    },
+    {
+        "kasutajanimi": "karl420",
+        "eesnimi": "Karl",
+        "perenimi": "Kask",
+        "synnikuupaev": "1999-07-22",
+        "parool": "Karl4Ever2"
+    },
+    {
+        "kasutajanimi": "mesikapp",
+        "eesnimi": "Toomas",
+        "perenimi": "Kuusk",
+        "synnikuupaev": "2008-01-30",
+        "parool": "mesi"
+    },
+    {
+        "kasutajanimi": "raul1234",
+        "eesnimi": "Raul",
+        "perenimi": "Kapp",
+        "synnikuupaev": "2005-02-13",
+        "parool": "RaulKapp99"
+    },
+    {
+        "kasutajanimi": "jaana111",
+        "eesnimi": "Jaana",
+        "perenimi": "Kask",
+        "synnikuupaev": "1999-03-14",
+        "parool": "JaanaKask_999"
+    }
+]

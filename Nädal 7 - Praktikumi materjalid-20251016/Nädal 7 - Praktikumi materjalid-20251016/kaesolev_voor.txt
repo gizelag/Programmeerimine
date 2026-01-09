@@ -1,0 +1,12 @@
+Kalev/Cramo;W;L;W;W
+Tartu Ülikool;W;W;X;W
+Valmiera Glass;L;W;W;L
+TalTech/Alexela;W;W;L;X
+Viimsi;L;L;L;W
+Transcom Pärnu;W;L;L;W
+Rigas Zelli;W;W;W;W
+BK Ogre;W;W;L;X
+VEF Riga;L;W;W;W
+Latvia University;L;L;L;L
+Keila Coolbet;L;L;W;L
+Keila KK;L;L;L;W

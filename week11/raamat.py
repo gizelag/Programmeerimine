@@ -1,4 +1,4 @@
-class Raamat():#loome klassi nimega raamat
+class Raamat():   #loome klassi nimega raamat
     def __init__(self, pealkiri:str, autor:str, lehekuljed:int, liik:str):
         self.pealkiri = pealkiri    #lisame atribuudid
         self.autor = autor

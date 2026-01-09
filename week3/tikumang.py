@@ -4,6 +4,7 @@ import random
 def küsi_kasutaja_käik(tikud_alles):
     print("Mängija 1 kord(sul on 5 sekundit)")
     start = time.time()
+    '''while time.time() - start < 5:'''
     kasutaja_input = int(input("Mitu tikku võtad(1-5)? "))
     end = time.time()
 

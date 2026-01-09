@@ -17,8 +17,7 @@ def taringuvise():
         elif kasutaja_sisend == "lõpp":
             print("Programm lõpetatud.")
             break
-def main():
-    taringuvise()
-if __name__ == "__main__":
-    main()
-
+    def main():
+        taringuvise()
+    if __name__ == "__main__":
+        main()

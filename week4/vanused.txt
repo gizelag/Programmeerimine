@@ -1,0 +1,33 @@
+Mari;21
+Jaan;18
+Liis;24
+Oskar;22
+Toomas;14
+Anna;19
+Peeter;67
+Kati;45
+Martin;16
+Eva;52
+Risto;28
+Laura;33
+     Jaak;41
+Kristina;12
+Mihkel;29
+Helgi;78
+Karl;35
+Siiri;8
+Andres;55
+Marta;62
+Paul;26
+Kairi;31
+Viktor;73
+Ellen;17
+Robert;39
+Markus;3
+
+----
+Kaja.kuus
+Sass-78
+ Kristo;24
+ Aleksandra:12
+Maarika;loe_pereandmed()

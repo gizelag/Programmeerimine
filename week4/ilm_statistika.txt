@@ -1,0 +1,4 @@
+Keskmine max temperatuur: 6.2°C
+Keskmine min temperatuur: 0.0°C
+Sademete kogusumma: 35.3 mm
+Vihmaseid päevi (>1mm): 11

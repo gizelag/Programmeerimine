@@ -1,0 +1,18 @@
+type,route_number,route_name,start_stop,end_stop,num_stops,distance_km,avg_speed_kmh,ticket_price,frequency_min,operates_nights,wheelchair_accessible,air_conditioned,bike_capacity,gauge_mm,power_type
+train,100,Express Train,Tallinn,Tartu,5,185.0,120,15.00,60,True,True,True,5,1520,Electric
+bus,3A,Kopli-Maarjamäe,Kopli,Maarjamäe,24,12.5,25,2.00,10,False,True,True,2,,Diesel
+bus,32,Suur-Järve - Väike-Õismäe,Suur-Järve,Väike-Õismäe,18,10.2,28,2.00,12,True,True,True,2,,Diesel
+bus,5,Balti jaam - Kadriorg,Balti jaam,Kadriorg,15,8.7,22,2.00,8,False,True,False,0,,Diesel
+bus,21A,Viru - Rocca al Mare,Viru keskus,Rocca al Mare,20,11.8,30,2.00,15,False,True,True,3,,Diesel
+tram,1,Kopli-Kadriorg,Kopli,Kadriorg,22,10.5,18,2.00,7,False,True,False,0,1524,Electric
+tram,2,Suur-Paala - Reisisadam,Suur-Paala,Reisisadam,19,9.8,20,2.00,8,False,True,False,0,1524,Diesel
+metro,M1,Ülemiste-Keskus,Ülemiste,Vanalinn,12,8.5,35,2.50,5,True,True,True,0,1435,Electric
+tram,3,Tondi - Kadriorg,Tondi,Kadriorg,17,8.2,19,2.00,10,False,False,False,0,1524,Electric
+bicycle,B1,Bike Route,Kadriorg,Pirita,8,5.2,15,0.50,20,False,False,False,10,,Human
+tram,4,Tondi - Lennujaam,Tondi,Lennujaam,25,14.3,22,2.00,12,True,True,False,0,1524,Electric
+trolleybus,1A,Balti jaam - Nõmme turg,Balti jaam,Nõmme turg,28,13.7,24,2.00,9,False,True,False,0,,Electric
+trolleybus,9,Kopli - Mustamäe,Kopli,Mustamäe,21,11.4,26,2.00,11,False,True,True,1,,Electric
+trolleybus,22,Linnahall - Väike-Õismäe,Linnahall,Väike-Õismäe,23,12.1,23,2.00,10,True,False,False,0,,Diesel
+trolleybus,18E,Viru - Nõmme,Viru keskus,Nõmme turg,26,14.8,25,2.00,13,False,True,True,2,,Electric
+ferry,F1,Sea Line,Reisisadam,Aegna,3,14.0,25,5.00,120,False,False,False,20,,Diesel
+helicopter,H1,Sky Express,Lennujaam,Kesklinn,2,12.0,180,50.00,30,False,False,False,0,,Aviation fuel

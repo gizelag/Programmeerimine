@@ -1,0 +1,20 @@
+Hamilton;72.1
+Verstappen;71.3
+Räikkönen;74.0
+Leclerc;73.5
+Russell;74.8
+Sainz;75.2
+Norris;75.7
+Albon;76.1
+Gasly;76.4
+Ocon;76.8
+Alonso;77.2
+Stroll;77.5
+Magnussen;78.1
+Hulkenberg;78.3
+Bottas;78.7
+Zhou;79.2
+Tsunoda;79.5
+De Vries;80.1
+Sargeant;80.6
+Schumacher;81.2

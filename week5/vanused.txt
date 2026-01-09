@@ -1,0 +1,9 @@
+Mari: 12
+Jüri: 17
+Kati: 25
+Toomas: 66
+Anneli: 35
+Karl: 9
+Sandra: 64
+Rasmus: 13
+Liis: 5

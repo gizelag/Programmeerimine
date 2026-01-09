@@ -1,4 +1,4 @@
-def numbrite_summa(arv: int) -> int:
+def numbrite_summa(arv: int):
     if isinstance(arv, int):
         arv = abs(arv)
         if (arv) < 10:
@@ -6,7 +6,7 @@ def numbrite_summa(arv: int) -> int:
         return (arv) % 10 + numbrite_summa(arv // 10)
     else:
         print("Viga")
-        return
+        return None
 
 def main():
     arv = (-198)

@@ -1,0 +1,12 @@
+Kalev/Cramo;4
+Tartu Ülikool;4
+Valmiera Glass;2
+TalTech/Alexela;3
+Viimsi;1
+Transcom Pärnu;2
+Rigas Zelli;5
+BK Ogre;3
+VEF Riga;2
+Latvia University;1
+Keila Coolbet;2
+Keila KK;0

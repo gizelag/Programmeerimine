@@ -1,0 +1,15 @@
+FaZe Clan;6
+Team Liquid;8
+
+G2 Esports;5
+Cloud9;7
+Fnatic;6
+
+T1;5
+TSM;4
+NRG Esports;3
+Evil Geniuses;4
+100 Thieves;3
+
+Team Vitality;2
+Gen.G;1
