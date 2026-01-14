@@ -1,171 +1,218 @@
+# Impordid, mida programm vajab
+# json – JSON failide lugemiseks ja kirjutamiseks
+# csv – CSV failide lugemiseks
+# hashlib – paroolide krüpteerimiseks (räsi arvutamiseks)
+
+import json
 import csv
-from school_system import ElementaryStudent
-from school_system import HighSchoolStudent
-from school_system import SubjectTeacher
-from school_system import ClassTeacher
-from school_system import SupportStaff
-class DataLoader():
+import hashlib
+
+
+class FailiLugeja:
+    """
+    Abiklass failidest andmete lugemiseks.
+
+    Tegemist on utiliitklassiga – ta ei hoia oma olekut
+    (ei ole vaja luua objekti), vaid pakub ainult
+    staatilisi meetodeid failide lugemiseks.
+    """
 
     @staticmethod
-    def load_elementary_students(filename='elementary_students.csv'):
-        ElementaryStudent_list = []
-        try:
-            with open(filename, 'r', encoding='utf-8') as f:
-                data = csv.DictReader(f)
-
-                for row in data:
-                    student = ElementaryStudent(
-                        firstname=row['firstname'].strip(),
-                        lastname=row['lastname'].strip(),
-                        personal_id_nr=int(row['personal_id_nr'].strip()),
-                        date_of_birth=row['date_of_birth'].strip(),
-                        class_name=row['class_name'].strip(),
-                        class_teacher=row['class_teacher'].strip()
-                    )
-                    ElementaryStudent_list.append(student)
-
-        except FileNotFoundError as e:
-            print(e)
-        except Exception as e:
-            print(e)
-        õpilaste_arv = len(ElementaryStudent_list)
-
-        print(f"Elementary school õpilaste kogu arv: {õpilaste_arv}")
-        return ElementaryStudent_list
-
-
-    @staticmethod
-    def load_high_school_students(filename='high_school_students.csv'):
-        high_school_list = []
-        try:
-            with open(filename, 'r', encoding='utf-8') as f:
-                data = csv.DictReader(f)
-
-                for row in data:
-                    student = HighSchoolStudent(
-                        firstname=row['firstname'].strip(),
-                        lastname=row['lastname'].strip(),
-                        personal_id_nr=int(row['personal_id_nr'].strip()),
-                        date_of_birth=row['date_of_birth'].strip(),
-                        class_name=row['class_name'].strip(),
-                        field_of_study=row['field_of_study'].strip()
-                    )
-                    high_school_list.append(student)
-
-        except FileNotFoundError as e:
-            print(e)
-        except Exception as e:
-            print(e)
-        õpilaste_arv = len(high_school_list)
-        print(f"Highschool Õpilaste kogu arv: {õpilaste_arv}")
-        return high_school_list
-
-    @staticmethod
-    def load_subject_teachers(filename='subject_teachers.csv'):
-        subject_teachers = []
+    def loe_csv_failist(failinimi):
+        # Siia kogume CSV failist loetud andmed
+        andmed = []
 
         try:
-            with open(filename, 'r', encoding='utf-8') as f:
-                data = csv.DictReader(f)
+            # Avame faili lugemiseks UTF-8 kodeeringus
+            with open(failinimi, encoding="utf-8") as f:
+                read = f.readlines()
 
-                for row in data:
-                    firstname = row.get('firstname') or row.get('first_name')
-                    lastname = row.get('lastname') or row.get('last_name')
-                    personal_id_nr = row.get('personal_id_nr') or "00000000000"
-                    date_of_birth = row.get('date_of_birth') or "1900-01-01"
-                    employee_id = row.get('employee_id') or "UNKNOWN"
-                    salary = row.get('salary') or "0"
-                    main_subject = row.get('main_subject') or row.get('subject')
+                # Kui fail on tühi, tagastame tühja listi
+                if not read:
+                    return andmed
 
-                    teacher = SubjectTeacher(
-                        firstname=firstname.strip(),
-                        lastname=lastname.strip(),
-                        personal_id_nr=int(str(personal_id_nr).strip()),
-                        date_of_birth=str(date_of_birth).strip(),
-                        employee_id=str(employee_id).strip(),
-                        salary=float(salary),
-                        main_subject=str(main_subject).strip()
-                    )
-                    subject_teachers.append(teacher)
+                # Esimene rida on veerunimed (header)
+                header = read[0].strip().split(",")
 
-        except FileNotFoundError:
-            print(f"File not found: {filename}")
+                # Ülejäänud read on andmeread
+                for rida in read[1:]:
+                    rida = rida.strip()
+
+                    # Tühjad read jäetakse vahele
+                    if not rida:
+                        continue
+
+                    väärtused = rida.split(",")
+
+                    # Kui veergude arv ei klapi, jätame rea vahele
+                    if len(väärtused) != len(header):
+                        continue
+
+                    # Teeme ühest reast sõnastiku
+                    # võti = veeru nimi, väärtus = rea väärtus
+                    andmed.append(dict(zip(header, väärtused)))
+
         except Exception as e:
-            print(f"Error loading subject teachers: {e}")
+            print(e)
 
-        return subject_teachers
+        # Tagastame loetud andmed listina
+        return andmed
 
     @staticmethod
-    def load_class_teachers(filename='class_teachers.csv'):
-        class_teachers = []
-
+    def loe_json_failist(failinimi):
         try:
-            with open(filename, 'r', encoding='utf-8') as f:
-                data = csv.DictReader(f)
-                for row in data:
-                    student = ClassTeacher(
-                        firstname=row['firstname'].strip(),
-                        lastname=row['lastname'].strip(),
-                        personal_id_nr=int(row['personal_id_nr'].strip()),
-                        date_of_birth=row['date_of_birth'].strip(),
-                        employee_id=row['employee_id'].strip(),
-                        salary=int(row['salary'].strip()),
-                        subjects=row["subjects"].strip().split(";"),
-                        supervised_class=row['supervised_class'].strip()
-                    )
-                    class_teachers.append(student)
-
-        except FileNotFoundError as e:
-            print(e)
+            with open(failinimi, encoding="utf-8") as f:
+                # json.load teisendab JSON faili Python objektiks
+                return json.load(f)
         except Exception as e:
             print(e)
-        class_teachers_arv = len(class_teachers)
-        print(f"Class teachers kogu arv: {class_teachers_arv}")
-        return class_teachers
+            return []
+
+
+class ParooliHaldur:
+    """
+    Klass, mis tegeleb paroolide haldamisega.
+
+    Vastutab:
+    - parooli valideerimise eest
+    - parooli krüpteerimise eest
+    - paroolide salvestamise eest
+    """
+
+    # Klassimuutuja – ühine kõigi ParooliHaldur objektide vahel
+    _paroolid = {}
+
+    def __init__(self, kasutajanimi):
+        # Iga objekt on seotud konkreetse kasutajaga
+        self._kasutajanimi = kasutajanimi
+        self._parool_hash = None
+
+    @property
+    def parool_hash(self):
+        # Getter – võimaldab parooli räsi lugeda
+        return self._parool_hash
+
+    @parool_hash.setter
+    def parool_hash(self, parool):
+        # Setter – määrab parooli kontrollitult
+
+        # Kontrollime, kas parool vastab nõuetele
+        ok, msg = ParooliHaldur.valideeri_parool(parool)
+        if not ok:
+            print(f"Viga kasutajal {self._kasutajanimi}: {msg}")
+            return
+
+        # Krüpteerime parooli (räsi)
+        self._parool_hash = ParooliHaldur.krüpteeri_parool(parool)
+
+        # Salvestame räsi klassimuutujasse
+        ParooliHaldur._paroolid[self._kasutajanimi] = self._parool_hash
 
     @staticmethod
-    def load_support_staff(filename='support_staff.csv'):
-        support_staff = []
-        try:
-            with open(filename, 'r', encoding='utf-8') as f:
-                data = csv.DictReader(f)
-
-                for row in data:
-                    student = SupportStaff(
-                        firstname=row['firstname'].strip(),
-                        lastname=row['lastname'].strip(),
-                        personal_id_nr=int(row['personal_id_nr'].strip()),
-                        date_of_birth=row['date_of_birth'].strip(),
-                        employee_id=row['employee_id'].strip(),
-                        position=row['position'].strip(),
-                        salary=int(row['salary'].strip()),
-                        responsibility_area=row['responsibility_area'].strip()
-                    )
-
-                    support_staff.append(student)
-
-        except FileNotFoundError as e:
-            print(e)
-        except Exception as e:
-            print(e)
-        support_staff_arv = len(support_staff)
-        print(f"Support staff kogu arv: {support_staff_arv}")
-        return support_staff
+    def valideeri_parool(parool):
+        # Kontrollime parooli tugevust
+        if len(parool) < 8:
+            return False, "Parool peab olema vähemalt 8 märki"
+        if not any(c.isupper() for c in parool):
+            return False, "Parool peab sisaldama suurtähte"
+        if not any(c.isdigit() for c in parool):
+            return False, "Parool peab sisaldama numbrit"
+        return True, "OK"
 
     @staticmethod
-    def load_all_data(elementary_data="elementary_students.csv",
-                      high_school_data="high_school_students.csv",
-                      subject_teachers_data="subject_teachers.csv",
-                      class_teachers_data="class_teachers.csv",
-                      support_staff_data="support_staff.csv"):
-        return {
-            'elementary_students': DataLoader.load_elementary_students(elementary_data),
-            'high_school_students': DataLoader.load_high_school_students(high_school_data),
-            'subject_teachers': DataLoader.load_subject_teachers(subject_teachers_data),
-            'class_teachers': DataLoader.load_class_teachers(class_teachers_data),
-            'support_staff': DataLoader.load_support_staff(support_staff_data)
-        }
+    def krüpteeri_parool(parool):
+        # Kasutame SHA-256 algoritmi
+        # Tegemist on ühesuunalise krüpteerimisega
+        return hashlib.sha256(parool.encode()).hexdigest()
 
-if __name__ == '__main__':
-    data = DataLoader.load_all_data()
-    print(data)
+    @classmethod
+    def salvesta_paroolid_faili(cls, fail="paroolid.json"):
+        # Klassimeetod, sest kasutab klassimuutujat _paroolid
+        with open(fail, "w", encoding="utf-8") as f:
+            json.dump(cls._paroolid, f, indent=4, ensure_ascii=False)
+
+    @classmethod
+    def paroolide_arv(cls):
+        # Tagastab salvestatud paroolide arvu
+        return len(cls._paroolid)
+
+
+class Kasutaja:
+    """
+    Klass, mis esindab kasutajat süsteemis.
+    """
+
+    # Klassimuutuja – hoiab kõiki loodud kasutajaid
+    kasutajad = []
+
+    def __init__(self, kasutajanimi, eesnimi, perenimi, vanus):
+        self.kasutajanimi = kasutajanimi
+        self.taisnimi = f"{eesnimi} {perenimi}"
+        self.vanus = int(vanus)
+
+        # Lisame kasutaja üldisesse nimekirja
+        Kasutaja.kasutajad.append(self)
+
+    @staticmethod
+    def loo_csv_reast(rida):
+        # Loob kasutaja CSV rea põhjal
+        osad = rida.split(",")
+        return Kasutaja(osad[0], osad[1], osad[2], osad[3])
+
+    @staticmethod
+    def loo_json_objektist(obj):
+        # Loob kasutaja JSON objektist
+        return Kasutaja(
+            obj["kasutajanimi"],
+            obj["eesnimi"],
+            obj["perenimi"],
+            obj["vanus"]
+        )
+
+    def valideeri_kasutajanimi(self, nimi):
+        # Kontrollime kasutajanime pikkust
+        if len(nimi) < 3:
+            return False, "Kasutajanimi liiga lühike"
+        return True, "OK"
+
+    @classmethod
+    def kasutajate_statistika(cls):
+        # Tagastab info, mitu kasutajat on loodud
+        return f"Kasutajaid kokku: {len(cls.kasutajad)}"
+
+
+def main():
+    # Loeme kasutajad CSV failist
+    csv_andmed = FailiLugeja.loe_csv_failist("kasutajad.csv")
+
+    for rida in csv_andmed:
+        kasutaja = Kasutaja.loo_csv_reast(",".join(rida.values()))
+
+        ok, msg = kasutaja.valideeri_kasutajanimi(rida["kasutajanimi"])
+        if not ok:
+            print(msg)
+            continue
+
+        parool = ParooliHaldur(rida["kasutajanimi"])
+        parool.parool_hash = rida["parool"]
+
+        print(kasutaja.taisnimi, kasutaja.vanus)
+
+    # Loeme kasutajad JSON failist
+    json_andmed = FailiLugeja.loe_json_failist("kasutajad.json")
+
+    for obj in json_andmed:
+        kasutaja = Kasutaja.loo_json_objektist(obj)
+        parool = ParooliHaldur(obj["kasutajanimi"])
+        parool.parool_hash = obj["parool"]
+
+    # Salvestame kõik paroolid faili
+    ParooliHaldur.salvesta_paroolid_faili()
+
+    # Kuvame statistika
+    print(Kasutaja.kasutajate_statistika())
+    print(f"Registreeritud paroole: {ParooliHaldur.paroolide_arv()}")
+
+
+if __name__ == "__main__":
+    main()

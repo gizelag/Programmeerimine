@@ -29,7 +29,7 @@ def main():
     # Kuvame kõik loomad
     zoo.show_all_animals()
 
-    # Polümorfism - söötmine ja kuulamine
+    # Polümorfism - söötmine ja kuulamine. eri klasside objektid võivad kasutada sama meetodit, kuid iga objekt teeb seda omal viisil.
     zoo.feed_and_listen_all_the_animals()
 
 if __name__ == "__main__":

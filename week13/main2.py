@@ -1,118 +1,225 @@
-from data_loader import DataLoader
-from school_system import School
+import csv        # CSV (comma-separated values) failide lugemiseks
+import json       # JSON andmete lugemiseks ja salvestamiseks
+import hashlib    # Paroolide räsimiseks (turvaline ühesuunaline krüpteerimine)
+
+
+class FailiLugeja:
+    """
+    Utiliitklass failide lugemiseks.
+
+    See klass ei esinda ühtegi konkreetset objekti,
+    vaid pakub funktsionaalsust.
+    Seetõttu on kõik meetodid staatilised.
+    """
+
+    @staticmethod
+    def loe_csv_failist(failinimi):
+        # List, kuhu kogutakse CSV failist loetud kasutajad
+        andmed = []
+
+        try:
+            # Avame faili lugemiseks
+            with open(failinimi, encoding="utf-8") as f:
+                read = f.readlines()
+
+                # Kui fail on tühi, pole midagi töödelda
+                if not read:
+                    return andmed
+
+                # Esimene rida on päis (veerunimed)
+                header = read[0].strip().split(",")
+
+                # Läbime andmeread
+                for rida in read[1:]:
+                    rida = rida.strip()
+
+                    # Tühjad read jäetakse vahele
+                    if not rida:
+                        continue
+
+                    values = rida.split(",")
+
+                    # Kui veergude arv ei klapi, on rida vigane
+                    if len(values) != len(header):
+                        continue
+
+                    # Teisendame rea sõnastikuks
+                    andmed.append(dict(zip(header, values)))
+
+        except Exception as e:
+            # Kui fail puudub või on vigane
+            print(e)
+
+        return andmed
+
+    @staticmethod
+    def loe_json_failist(failinimi):
+        """
+        Loeb JSON faili ja teisendab selle Python andmestruktuuriks.
+        """
+        try:
+            with open(failinimi, encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            print(e)
+            return []
+
+
+class ParooliHaldur:
+    """
+    Vastutab paroolidega seotud loogika eest.
+
+    Paroolid valideeritakse, räsitakse ja
+    salvestatakse turvalisel kujul.
+    """
+
+    # Klassimuutuja – kõigi kasutajate parooliräsid hoitakse siin
+    _paroolid = {}
+
+    def __init__(self, kasutajanimi):
+        # Iga ParooliHaldur objekt on seotud ühe kasutajaga
+        self._kasutajanimi = kasutajanimi
+        self._parool_hash = None
+
+    @property
+    def parool_hash(self):
+        """
+        Getter – võimaldab parooli räsi lugemist,
+        kuid ei luba seda otse muuta.
+        """
+        return self._parool_hash
+
+    @parool_hash.setter
+    def parool_hash(self, parool):
+        """
+        Setter – käivitub parooli määramisel.
+
+        Siin tehakse kõik vajalikud kontrollid
+        enne, kui parool salvestatakse.
+        """
+
+        ok, msg = ParooliHaldur.valideeri_parool(parool)
+        if not ok:
+            print(f"Viga kasutajal {self._kasutajanimi}: {msg}")
+            return
+
+        # Räsime parooli
+        self._parool_hash = ParooliHaldur.krüpteeri_parool(parool)
+
+        # Salvestame tulemuse klassimuutujasse
+        ParooliHaldur._paroolid[self._kasutajanimi] = self._parool_hash
+
+    @staticmethod
+    def valideeri_parool(parool):
+        """
+        Kontrollib, kas parool vastab miinimumnõuetele.
+        """
+        if len(parool) < 8:
+            return False, "Parool liiga lühike"
+        if not any(c.isupper() for c in parool):
+            return False, "Parool peab sisaldama suurtähte"
+        if not any(c.isdigit() for c in parool):
+            return False, "Parool peab sisaldama numbrit"
+        return True, "OK"
+
+    @staticmethod
+    def krüpteeri_parool(parool):
+        """
+        Räsib parooli SHA-256 algoritmiga.
+        See tähendab, et algset parooli ei saa tagasi.
+        """
+        return hashlib.sha256(parool.encode()).hexdigest()
+
+    @classmethod
+    def salvesta_paroolid_faili(cls, fail="paroolid.json"):
+        """
+        Salvestab kõik parooliräsid JSON faili.
+        """
+        with open(fail, "w", encoding="utf-8") as f:
+            json.dump(cls._paroolid, f, indent=4, ensure_ascii=False)
+
+    @classmethod
+    def paroolide_arv(cls):
+        # Tagastab salvestatud paroolide arvu
+        return len(cls._paroolid)
+
+
+class Kasutaja:
+    """
+    Klass, mis esindab ühte kasutajat süsteemis.
+    """
+
+    # Klassimuutuja – kõik loodud kasutajad
+    kasutajad = []
+
+    def __init__(self, kasutajanimi, eesnimi, perenimi, vanus):
+        self.kasutajanimi = kasutajanimi
+        self.taisnimi = f"{eesnimi} {perenimi}"
+        self.vanus = int(vanus)
+
+        # Lisame kasutaja üldisesse nimekirja
+        Kasutaja.kasutajad.append(self)
+
+    @staticmethod
+    def loo_csv_reast(rida):
+        """
+        Loob Kasutaja objekti CSV rea põhjal.
+        """
+        osad = rida.split(",")
+        return Kasutaja(osad[0], osad[1], osad[2], osad[3])
+
+    @staticmethod
+    def loo_json_objektist(obj):
+        """
+        Loob Kasutaja objekti JSON objektist.
+        """
+        return Kasutaja(
+            obj["kasutajanimi"],
+            obj["eesnimi"],
+            obj["perenimi"],
+            obj["vanus"]
+        )
+
+    def valideeri_kasutajanimi(self, nimi):
+        """
+        Kontrollib kasutajanime lihtsat reeglit.
+        """
+        if len(nimi) < 3:
+            return False, "Kasutajanimi liiga lühike"
+        return True, "OK"
+
+    @classmethod
+    def kasutajate_statistika(cls):
+        """
+        Tagastab info, kui palju kasutajaid on loodud.
+        """
+        return f"Kasutajaid kokku: {len(cls.kasutajad)}"
 
 
 def main():
-    school = School("Tallinn Real Gymnasium", "Estonia pst 1, Tallinn")
-    objektid = DataLoader.load_all_data()
-    #print(f"1{objektid}2")
-    #Hobid
-    elementary = objektid.get("elementary_students", [])
-    highschool = objektid.get("high_school_students", [])
-    subject_teachers = objektid.get("subject_teachers", [])
-    class_teachers = objektid.get("class_teachers", [])
-    support_staff = objektid.get("support_staff", [])
+    """
+    Programmi põhiloogika.
+    """
 
-    # Leia vajalikud isikud turvaliselt
-    mari = next((s for s in elementary if s.firstname.lower() == "mari"), None)
-    juku = next((s for s in elementary if s.firstname.lower() == "juku"), None)
+    csv_andmed = FailiLugeja.loe_csv_failist("kasutajad.csv")
 
-    anna = next((s for s in highschool if s.firstname.lower() == "anna"), None)
-    peeter = next((s for s in highschool if s.firstname.lower() == "peeter"), None)
-    markus = next((s for s in highschool if s.firstname.lower() == "markus"), None)
+    for rida in csv_andmed:
+        kasutaja = Kasutaja.loo_csv_reast(",".join(rida.values()))
 
-    toomas = next((t for t in subject_teachers if t.firstname.lower() == "toomas"), None)
-    liisa = next((t for t in subject_teachers if t.firstname.lower() == "liisa"), None)
+        ok, msg = kasutaja.valideeri_kasutajanimi(rida["kasutajanimi"])
+        if not ok:
+            print(msg)
+            continue
 
-    kati = next((t for t in class_teachers if t.firstname.lower() == "kati"), None)
+        parool = ParooliHaldur(rida["kasutajanimi"])
+        parool.parool_hash = rida["parool"]
 
-    jaan = next((ss for ss in support_staff if ss.firstname.lower() == "jaan"), None)
+        print(kasutaja.taisnimi, kasutaja.vanus)
 
-    print("\n*** Setting additional data ***\n")
+    ParooliHaldur.salvesta_paroolid_faili()
 
-    # Elementary – hobid ja hinded
-    if mari:
-        mari.add_hobby("Volleyball")
-        mari.add_grade("Mathematics", 4)
-        mari.add_grade("Estonian", 5)
-
-    if juku:
-        juku.add_hobby("Football")
-        juku.add_hobby("Robotics")
-        juku.add_grade("Mathematics", 5)
-        juku.add_grade("Physics", 5)
-        juku.add_grade("Estonian", 3)
-
-    # Highschool – ained, hinded, eksamid
-    if anna:
-        anna.choose_subject("Physics")
-        anna.choose_subject("Mathematics")
-        anna.add_grade("Chemistry", 4)
-        anna.add_grade("Biology", 3)
-        anna.take_exam("Mathematics", 96)
-
-    if peeter:
-        peeter.choose_subject("English")
-        peeter.add_grade("Society", 5)
-        peeter.add_grade("Estonian", 3)
-        peeter.add_grade("Chemistry", 2)
-        peeter.take_exam("Estonian", 85)
-
-    if markus:
-        markus.choose_subject("English")
-        markus.choose_subject("Physics")
-        markus.add_grade("Biology", 5)
-        markus.add_grade("Estonian", 3)
-        markus.add_grade("History", 4)
-        markus.add_grade("Chemistry", 5)
-        markus.take_exam("Mathematics", 74)
-        markus.take_exam("Estonian", 78)
-
-    # SubjectTeacher specialization
-    if toomas:
-        toomas.set_specialization = "Geometry"
-        print(f"{toomas.fullname} specialized in: Geometry")
-
-    # SupportStaff tasks
-    if jaan:
-        jaan.add_task("Cleaning classrooms")
-        jaan.add_task("Washing windows")
-
-    print("\n*** Staffing the school ***\n")
-
-    # Kõik õpilased kooli
-    for s in elementary:
-        school.add_student(s)
-    for s in highschool:
-        school.add_student(s)
-
-    # Kõik töötajad kooli
-    for t in class_teachers:
-        school.add_employee(t)
-    for t in subject_teachers:
-        school.add_employee(t)
-    for ss in support_staff:
-        school.add_employee(ss)
-
-    # Õpilaste lisamine klassi
-    if kati and mari:
-        kati.add_student_to_class(mari)
-    if kati and juku:
-        kati.add_student_to_class(juku)
-
-    # Õpetamised
-    if toomas:
-        toomas.teach_lesson("Math", "3a")
-        toomas.teach_lesson("Math", "11a")
-
-    if liisa:
-        liisa.teach_lesson("Physics", "11a")
-
-    print("\n*** All Persons info ***\n")
-    print(f"=== {school.name} - All people ===\n")
-    school.display_all_people()
-
-    print(f"\n*** Total salary: ***\nTotal monthly salary: {school.calculate_total_salary():.2f}€")
+    print(Kasutaja.kasutajate_statistika())
+    print("Paroole:", ParooliHaldur.paroolide_arv())
 
 
 if __name__ == "__main__":
